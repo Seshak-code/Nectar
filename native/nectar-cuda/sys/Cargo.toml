@@ -1,0 +1,6 @@
+[package]
+name = "nectar-cuda-sys"
+description = "CUDA driver API types, generated from cuda.h"
+version.workspace = true
+edition.workspace = true
+license.workspace = true

@@ -1,57 +1,71 @@
 param (
+    # Defaults to build in the repo (set below: Windows PowerShell has no $PSScriptRoot here)
     [Parameter()]
     [string]
-    $Output = (Get-Location).Path,
+    $Output,
 
     [Parameter()]
     [switch]
-    $BuildDebug,
-
-    [Parameter()]
-    [string]
-    $Version = "unset"
+    $BuildDebug
 )
 
-# Powershell 5 and below are available only on Windows
-if ($PSVersionTable.PSVersion.Major -lt 7)
+if ($env:OS -ne "Windows_NT")
 {
-    $IsWindows = $true
-    $IsLinux = $false
+    throw "This builds the Windows files; elsewhere run cargo build --release in native/nectar-cuda"
 }
 
-$Suffix = ""
-if ($IsWindows)
+if (-not $Output)
 {
-    $Suffix = ".exe"
+    $Output = Join-Path $PSScriptRoot "build"
 }
 
-function Get-LinkFlags($Component)
+# The native builds go to $Output\native\..., which in the repo root are the source folders
+if ([IO.Path]::GetFullPath($Output).TrimEnd('\', '/') -eq $PSScriptRoot)
 {
-    $SentryDsn = @{
-        agent       = $env:JUICE_AGENT_SENTRY_DSN;
-        controller  = $env:JUICE_CONTROLLER_SENTRY_DSN;
-        juicify     = $env:JUICE_JUICIFY_SENTRY_DSN;
-    }
-
-    $dsn = $SentryDsn[$Component]
-    
-    return @(
-        "-X github.com/Juice-Labs/Juice-Labs/cmd/internal/build.Version=$Version";
-        "-X github.com/Juice-Labs/Juice-Labs/pkg/sentry.SentryDsn=$dsn";
-     ) | Join-String -Separator " "
+    throw "Build into a folder of its own, such as build (the default), not the repo root"
 }
 
-
-
-if ($BuildDebug)
+# Nectar needs Rust. Its nvcuda.dll gets a folder of its own, so a CUDA program
+# started from $Output never loads it by accident.
+$Cargo = Get-Command cargo -ErrorAction SilentlyContinue
+if (-not $Cargo)
 {
-    & go build -o $Output/agent$Suffix -ldflags (Get-LinkFlags -Component "agent") -gcflags=all='-N -l' ./cmd/agent/main.go
-    & go build -o $Output/controller$Suffix -ldflags (Get-LinkFlags -Component "controller") -gcflags=all='-N -l' ./cmd/controller/main.go
-    & go build -o $Output/juicify$Suffix -ldflags (Get-LinkFlags -Component "juicify") -gcflags=all='-N -l' ./cmd/juicify/main.go
+    $Cargo = Get-Command (Join-Path $HOME ".cargo\bin\cargo.exe") -ErrorAction SilentlyContinue
 }
-else
+
+if (-not $Cargo)
 {
-    & go build -o $Output/agent$Suffix -ldflags (Get-LinkFlags -Component "agent") ./cmd/agent/main.go
-    & go build -o $Output/controller$Suffix -ldflags (Get-LinkFlags -Component "controller") ./cmd/controller/main.go
-    & go build -o $Output/juicify$Suffix -ldflags (Get-LinkFlags -Component "juicify") ./cmd/juicify/main.go
+    throw "Rust was not found: install it from https://rustup.rs"
 }
+
+$CargoProfile = if ($BuildDebug) { "debug" } else { "release" }
+$CargoTarget = [IO.Path]::GetFullPath((Join-Path $Output "native\nectar-cuda"))
+
+$CargoArgs = @("build", "--manifest-path", (Join-Path $PSScriptRoot "native\nectar-cuda\Cargo.toml"), "--target-dir", $CargoTarget)
+if (-not $BuildDebug)
+{
+    $CargoArgs += "--release"
+}
+
+# From the workspace's folder, so cargo reads its .cargo\config.toml (static C runtime)
+Push-Location (Join-Path $PSScriptRoot "native\nectar-cuda")
+& $Cargo @CargoArgs
+Pop-Location
+if ($LASTEXITCODE -ne 0)
+{
+    throw "cargo build failed"
+}
+
+$CudaOutput = Join-Path $Output "nectar-cuda"
+New-Item -ItemType Directory -Force $CudaOutput | Out-Null
+# The lend/borrow app and service (nectar.exe, nectar-svc.exe) and nectar-detect beside the
+# server, and the Vulkan driver with its manifest and vk-probe
+foreach ($File in "nvcuda.dll", "nectar-server.exe", "nectar-cuda-run.exe", "cuda-probe.exe", "nectar.exe", "nectar-svc.exe", "nectar-detect.exe", "nectar_vk.dll", "vk-probe.exe")
+{
+    Copy-Item (Join-Path $CargoTarget "$CargoProfile\$File") $CudaOutput
+}
+Copy-Item (Join-Path $PSScriptRoot "native\nectar-cuda\install\nectar_icd.json") $CudaOutput
+
+# The tracer stands in for the driver under the same name, so it gets its own folder
+New-Item -ItemType Directory -Force (Join-Path $CudaOutput "trace") | Out-Null
+Copy-Item (Join-Path $CargoTarget "$CargoProfile\nvcudatrace.dll") (Join-Path $CudaOutput "trace\nvcuda.dll")

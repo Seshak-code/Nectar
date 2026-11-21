@@ -1,0 +1,10 @@
+[package]
+name = "nectar-cuda-server"
+description = "Runs CUDA driver API calls from borrowers on the lender's GPU"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+libloading.workspace = true
+nectar-cuda-protocol.workspace = true

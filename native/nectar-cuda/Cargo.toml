@@ -1,0 +1,15 @@
+[workspace]
+resolver = "3"
+members = ["protocol", "server", "client", "probe"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[workspace.dependencies]
+libloading = "0.8"
+nectar-cuda-protocol = { path = "protocol" }
+
+[profile.release]
+debug = "line-tables-only"

@@ -1,0 +1,10 @@
+[package]
+name = "nectar-lending"
+description = "Lending a GPU: discovery, the shared secret, the lease and the borrow config"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+nectar-cuda-protocol.workspace = true
+windows-sys = { version = "0.60", features = ["Win32_Foundation", "Win32_Security_Cryptography"] }

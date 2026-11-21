@@ -1,0 +1,22 @@
+# Nectar's borrowing service: finds lenders, holds the lease, and writes
+# /var/lib/nectar/borrow.cfg while a GPU is borrowed. install-borrower.sh installs it.
+[Unit]
+Description=Nectar: borrow a GPU from another computer
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/opt/nectar/bin/nectar-svc run
+Restart=on-failure
+RestartSec=2
+# Stopping returns a borrowed GPU and removes borrow.cfg
+KillSignal=SIGTERM
+TimeoutStopSec=10
+NoNewPrivileges=yes
+ProtectHome=yes
+ProtectSystem=strict
+ReadWritePaths=/var/lib/nectar /run
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[package]
+name = "nectar-vk-codegen"
+description = "Generates Nectar's Vulkan types, encoders and decoders from the Vulkan registry (vk.xml)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+roxmltree = "0.20"

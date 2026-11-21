@@ -1,0 +1,15 @@
+[package]
+name = "nectar-cuda-codegen"
+description = "Generates Nectar's CUDA bindings, client, server and tracer from cuda.h"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+bindgen = "0.72"
+object = { version = "0.37", default-features = false, features = ["read_core", "pe", "std"] }
+prettyplease = "0.2"
+proc-macro2 = "1"
+quote = "1"
+syn = { version = "2", features = ["full", "extra-traits"] }

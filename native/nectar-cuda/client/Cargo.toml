@@ -1,0 +1,18 @@
+[package]
+name = "nectar-cuda-client"
+description = "nvcuda.dll for a borrowed GPU: the CUDA driver API, carried out on the lender"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "nvcuda"
+crate-type = ["cdylib"]
+
+[dependencies]
+nectar-cuda-protocol.workspace = true
+nectar-cuda-sys.workspace = true
+libloading.workspace = true
+windows-sys = { version = "0.60", features = ["Win32_Foundation", "Win32_System_LibraryLoader", "Win32_System_Threading"] }
+retour = "0.3"
+
