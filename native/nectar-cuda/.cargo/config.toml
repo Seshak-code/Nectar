@@ -1,0 +1,4 @@
+# The C runtime linked in, not VCRUNTIME140.dll: Nectar's nvcuda.dll is loaded into any
+# CUDA program from System32, and a borrower needs no Visual C++ runtime installed
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]

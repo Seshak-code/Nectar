@@ -1,0 +1,9 @@
+[package]
+name = "cuda-probe"
+description = "Checks a CUDA driver library end to end, for comparing Nectar with the real driver"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+libloading.workspace = true

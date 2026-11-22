@@ -1,0 +1,8 @@
+[package]
+name = "nectar-vk-sys"
+description = "Vulkan types and command signatures, generated from vk.xml"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]

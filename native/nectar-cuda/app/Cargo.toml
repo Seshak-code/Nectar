@@ -1,0 +1,20 @@
+[package]
+name = "nectar-app"
+description = "nectar: lend this computer's GPU, or borrow one from another; a window on Windows, a command elsewhere"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "nectar"
+path = "src/main.rs"
+
+[dependencies]
+nectar-cuda-protocol.workspace = true
+nectar-lending.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.60", features = ["Win32_Foundation", "Win32_Graphics_Gdi", "Win32_Security_Cryptography", "Win32_System_LibraryLoader", "Win32_System_SystemInformation", "Win32_UI_Controls", "Win32_UI_HiDpi", "Win32_UI_Input_KeyboardAndMouse", "Win32_UI_Shell", "Win32_UI_WindowsAndMessaging"] }
+
+[target.'cfg(not(windows))'.dependencies]
+nectar-detect.workspace = true

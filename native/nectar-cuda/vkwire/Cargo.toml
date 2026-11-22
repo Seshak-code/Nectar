@@ -1,0 +1,10 @@
+[package]
+name = "nectar-vk-wire"
+description = "Vulkan calls on the wire: generated tables of every struct and command, and the interpreter that encodes and decodes them"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+nectar-cuda-protocol.workspace = true
+nectar-vk-sys.workspace = true

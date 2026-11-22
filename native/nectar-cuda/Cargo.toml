@@ -1,0 +1,22 @@
+[workspace]
+resolver = "3"
+members = ["sys", "vksys", "vkwire", "vk", "vkprobe", "protocol", "detect", "lending", "redirect", "server", "client", "trace", "run", "probe", "svc", "app", "netsim", "codegen", "vkcodegen"]
+default-members = ["sys", "vksys", "vkwire", "vk", "vkprobe", "protocol", "detect", "lending", "redirect", "server", "client", "trace", "run", "probe", "svc", "app", "netsim"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[workspace.dependencies]
+libloading = "0.8"
+nectar-cuda-protocol = { path = "protocol" }
+nectar-detect = { path = "detect" }
+nectar-lending = { path = "lending" }
+nectar-vk-sys = { path = "vksys" }
+nectar-vk-wire = { path = "vkwire" }
+nectar-cuda-redirect = { path = "redirect" }
+nectar-cuda-sys = { path = "sys" }
+
+[profile.release]
+debug = "line-tables-only"

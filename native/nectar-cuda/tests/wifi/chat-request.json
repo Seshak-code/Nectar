@@ -1,0 +1,8 @@
+{
+  "messages": [
+    { "role": "user", "content": "Explain in three sentences how a GPU differs from a CPU." }
+  ],
+  "temperature": 0,
+  "seed": 1,
+  "max_tokens": 600
+}

@@ -1,0 +1,10 @@
+[package]
+name = "nectar-cuda-redirect"
+description = "Answers every load of nvcuda.dll in a process with the DLL that installed it"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+retour = "0.3"
+windows-sys = { version = "0.60", features = ["Win32_Foundation", "Win32_System_LibraryLoader"] }

@@ -1,0 +1,9 @@
+[package]
+name = "nectar-cuda-protocol"
+description = "Wire protocol between Nectar's nvcuda.dll and the lender's CUDA server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+xxhash-rust = { version = "0.8.19", features = ["xxh3"] }

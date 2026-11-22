@@ -1,0 +1,345 @@
+# Nectar CUDA coverage
+
+Generated from cuda.h (CUDA_VERSION 13040) and 773 driver exports.
+
+| Handling | Exports |
+| --- | --- |
+| Generated | 417 |
+| Written by hand | 33 |
+| Not supported yet | 231 |
+| Not in cuda.h (driver internals) | 92 |
+
+cuGetProcAddress can hand out 681 (symbol, version) variants.
+
+## Versions in cudaTypedefs.h with no matching export
+
+- `cuDeviceGetNvSciSyncAttributes 10020`
+
+## Not supported yet
+
+- `cuCheckpointProcessCheckpoint`: args: CUcheckpointCheckpointArgs_st holds host pointers
+- `cuCheckpointProcessRestore`: args: CUcheckpointRestoreArgs_st holds host pointers
+- `cuCoredumpGetAttribute`: value: host memory
+- `cuCoredumpGetAttributeGlobal`: value: host memory
+- `cuCoredumpRegisterCompleteCallback`: callback: callback
+- `cuCoredumpRegisterStartCallback`: callback: callback
+- `cuCoredumpSetAttribute`: value: host memory
+- `cuCoredumpSetAttributeGlobal`: value: host memory
+- `cuCtxCreate_v3`: pctx: may be an array counted by numParams
+- `cuCtxCreate_v4`: ctxCreateParams: CUctxCreateParams_st holds host pointers
+- `cuCtxGetDevResource`: resource: CUdevResource_st holds host pointers
+- `cuDevResourceGenerateDesc`: resources: CUdevResource_st holds host pointers
+- `cuDevSmResourceSplit`: result: CUdevResource_st holds host pointers
+- `cuDevSmResourceSplitByCount`: result: CUdevResource_st holds host pointers
+- `cuDeviceGetCliqueInfo`: cliqueInfo: may be an array counted by count
+- `cuDeviceGetDevResource`: resource: CUdevResource_st holds host pointers
+- `cuDeviceGetGraphMemAttribute`: value: host memory
+- `cuDeviceGetHostAtomicCapabilities`: operations: input array
+- `cuDeviceGetP2PAtomicCapabilities`: operations: input array
+- `cuDeviceGetTexture1DLinearMaxWidth`: maxWidthInElements: may be an array counted by numChannels
+- `cuDeviceRegisterAsyncNotification`: callbackFunc: callback
+- `cuDeviceSetGraphMemAttribute`: value: host memory
+- `cuFuncGetName`: name: pointer to pointer
+- `cuGraphAddBatchMemOpNode`: dependencies: input array
+- `cuGraphAddChildGraphNode`: dependencies: input array
+- `cuGraphAddDependencies`: from: input array
+- `cuGraphAddDependencies_v2`: from: input array
+- `cuGraphAddEmptyNode`: dependencies: input array
+- `cuGraphAddEventRecordNode`: dependencies: input array
+- `cuGraphAddEventWaitNode`: dependencies: input array
+- `cuGraphAddExternalSemaphoresSignalNode`: dependencies: input array
+- `cuGraphAddExternalSemaphoresWaitNode`: dependencies: input array
+- `cuGraphAddHostNode`: dependencies: input array
+- `cuGraphAddKernelNode`: dependencies: input array
+- `cuGraphAddKernelNode_v2`: dependencies: input array
+- `cuGraphAddMemAllocNode`: dependencies: input array
+- `cuGraphAddMemFreeNode`: dependencies: input array
+- `cuGraphAddMemcpyNode`: dependencies: input array
+- `cuGraphAddMemsetNode`: dependencies: input array
+- `cuGraphAddNode`: dependencies: input array
+- `cuGraphAddNode_v2`: dependencies: input array
+- `cuGraphAddNode_v3`: dependencies: input array
+- `cuGraphBatchMemOpNodeGetParams`: nodeParams_out: CUDA_BATCH_MEM_OP_NODE_PARAMS_v1_st holds host pointers
+- `cuGraphBatchMemOpNodeSetParams`: nodeParams: CUDA_BATCH_MEM_OP_NODE_PARAMS_v1_st holds host pointers
+- `cuGraphExecBatchMemOpNodeSetParams`: nodeParams: CUDA_BATCH_MEM_OP_NODE_PARAMS_v1_st holds host pointers
+- `cuGraphExecExternalSemaphoresSignalNodeSetParams`: nodeParams: CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_st holds host pointers
+- `cuGraphExecExternalSemaphoresWaitNodeSetParams`: nodeParams: CUDA_EXT_SEM_WAIT_NODE_PARAMS_st holds host pointers
+- `cuGraphExecHostNodeSetParams`: nodeParams: CUDA_HOST_NODE_PARAMS_st holds host pointers
+- `cuGraphExecKernelNodeSetParams`: nodeParams: CUDA_KERNEL_NODE_PARAMS_st holds host pointers
+- `cuGraphExecKernelNodeSetParams_v2`: nodeParams: CUDA_KERNEL_NODE_PARAMS_v2_st holds host pointers
+- `cuGraphExecMemcpyNodeSetParams`: copyParams: CUDA_MEMCPY3D_st holds host pointers
+- `cuGraphExecNodeSetParams`: nodeParams: CUgraphNodeParams_st holds host pointers
+- `cuGraphExternalSemaphoresSignalNodeGetParams`: params_out: CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_st holds host pointers
+- `cuGraphExternalSemaphoresSignalNodeSetParams`: nodeParams: CUDA_EXT_SEM_SIGNAL_NODE_PARAMS_st holds host pointers
+- `cuGraphExternalSemaphoresWaitNodeGetParams`: params_out: CUDA_EXT_SEM_WAIT_NODE_PARAMS_st holds host pointers
+- `cuGraphExternalSemaphoresWaitNodeSetParams`: nodeParams: CUDA_EXT_SEM_WAIT_NODE_PARAMS_st holds host pointers
+- `cuGraphGetEdges`: from: may be an array counted by numEdges
+- `cuGraphGetEdges_v2`: from: may be an array counted by numEdges
+- `cuGraphGetNodes`: nodes: may be an array counted by numNodes
+- `cuGraphGetRootNodes`: rootNodes: may be an array counted by numRootNodes
+- `cuGraphHostNodeGetParams`: nodeParams: CUDA_HOST_NODE_PARAMS_st holds host pointers
+- `cuGraphHostNodeSetParams`: nodeParams: CUDA_HOST_NODE_PARAMS_st holds host pointers
+- `cuGraphInstantiate`: logBuffer: output string
+- `cuGraphInstantiate_v2`: logBuffer: output string
+- `cuGraphKernelNodeGetAttribute`: value_out: CUlaunchAttributeValue_union holds host pointers
+- `cuGraphKernelNodeGetParams`: nodeParams: CUDA_KERNEL_NODE_PARAMS_st holds host pointers
+- `cuGraphKernelNodeGetParams_v2`: nodeParams: CUDA_KERNEL_NODE_PARAMS_v2_st holds host pointers
+- `cuGraphKernelNodeSetAttribute`: value: CUlaunchAttributeValue_union holds host pointers
+- `cuGraphKernelNodeSetParams`: nodeParams: CUDA_KERNEL_NODE_PARAMS_st holds host pointers
+- `cuGraphKernelNodeSetParams_v2`: nodeParams: CUDA_KERNEL_NODE_PARAMS_v2_st holds host pointers
+- `cuGraphMemAllocNodeGetParams`: params_out: CUDA_MEM_ALLOC_NODE_PARAMS_v1_st holds host pointers
+- `cuGraphMemcpyNodeGetParams`: nodeParams: CUDA_MEMCPY3D_st holds host pointers
+- `cuGraphMemcpyNodeSetParams`: nodeParams: CUDA_MEMCPY3D_st holds host pointers
+- `cuGraphNodeGetDependencies`: dependencies: may be an array counted by numDependencies
+- `cuGraphNodeGetDependencies_v2`: dependencies: may be an array counted by numDependencies
+- `cuGraphNodeGetDependentNodes`: dependentNodes: may be an array counted by numDependentNodes
+- `cuGraphNodeGetDependentNodes_v2`: dependentNodes: may be an array counted by numDependentNodes
+- `cuGraphNodeGetParams`: nodeParams: CUgraphNodeParams_st holds host pointers
+- `cuGraphNodeSetParams`: nodeParams: CUgraphNodeParams_st holds host pointers
+- `cuGraphNodeSetParams_v2`: nodeParams: CUgraphNodeParams_st holds host pointers
+- `cuGraphRemoveDependencies`: from: input array
+- `cuGraphRemoveDependencies_v2`: from: input array
+- `cuGraphicsMapResources`: resources: may be an array counted by count
+- `cuGraphicsMapResources_ptsz`: resources: may be an array counted by count
+- `cuGraphicsUnmapResources`: resources: may be an array counted by count
+- `cuGraphicsUnmapResources_ptsz`: resources: may be an array counted by count
+- `cuGreenCtxGetDevResource`: resource: CUdevResource_st holds host pointers
+- `cuImportExternalMemory`: memHandleDesc: CUDA_EXTERNAL_MEMORY_HANDLE_DESC_st holds host pointers
+- `cuImportExternalSemaphore`: semHandleDesc: CUDA_EXTERNAL_SEMAPHORE_HANDLE_DESC_st holds host pointers
+- `cuKernelGetName`: name: pointer to pointer
+- `cuLaunchCooperativeKernel`: kernelParams: pointer to pointer
+- `cuLaunchCooperativeKernelMultiDevice`: launchParamsList: CUDA_LAUNCH_PARAMS_st holds host pointers
+- `cuLaunchCooperativeKernel_ptsz`: kernelParams: pointer to pointer
+- `cuLaunchHostFunc`: fn_: callback
+- `cuLaunchHostFunc_ptsz`: fn_: callback
+- `cuLaunchHostFunc_v2`: fn_: callback
+- `cuLaunchHostFunc_v2_ptsz`: fn_: callback
+- `cuLibraryEnumerateKernels`: kernels: may be an array counted by numKernels
+- `cuLibraryGetUnifiedFunction`: fptr: pointer to pointer
+- `cuLibraryLoadFromFile`: jitOptionsValues: pointer to pointer
+- `cuLinkAddData`: data: host memory
+- `cuLinkAddData_v2`: data: host memory
+- `cuLinkAddFile`: optionValues: pointer to pointer
+- `cuLinkAddFile_v2`: optionValues: pointer to pointer
+- `cuLinkComplete`: cubinOut: pointer to pointer
+- `cuLinkCreate`: optionValues: pointer to pointer
+- `cuLinkCreate_v2`: optionValues: pointer to pointer
+- `cuLogicalEndpointBindAddr`: ptr: host memory
+- `cuLogicalEndpointExport`: handle: host memory
+- `cuLogicalEndpointIdReserve`: baseLeId: may be an array counted by count
+- `cuLogicalEndpointImport`: handle: host memory
+- `cuLogicalEndpointQuery`: queryStatus: may be an array counted by count
+- `cuLogsDumpToMemory`: buffer: output string
+- `cuLogsRegisterCallback`: callbackFunc: callback
+- `cuMemAllocHost`: pp: pointer to pointer
+- `cuMemBatchDecompressAsync`: paramsArray: CUmemDecompressParams_st holds host pointers
+- `cuMemBatchDecompressAsync_ptsz`: paramsArray: CUmemDecompressParams_st holds host pointers
+- `cuMemDiscardAndPrefetchBatchAsync`: dptrs: may be an array counted by count
+- `cuMemDiscardAndPrefetchBatchAsync_ptsz`: dptrs: may be an array counted by count
+- `cuMemDiscardBatchAsync`: dptrs: may be an array counted by count
+- `cuMemDiscardBatchAsync_ptsz`: dptrs: may be an array counted by count
+- `cuMemExportToShareableHandle`: shareableHandle: host memory
+- `cuMemGetAllocationPropertiesFromHandle`: prop: CUmemAllocationProp_st holds host pointers
+- `cuMemGetHandleForAddressRange`: handle: host memory
+- `cuMemHostGetDevicePointer`: p: host memory
+- `cuMemHostGetDevicePointer_v2`: p: host memory
+- `cuMemHostRegister`: p: host memory
+- `cuMemImportFromShareableHandle`: osHandle: host memory
+- `cuMemMapArrayAsync`: mapInfoList: may be an array counted by count
+- `cuMemMapArrayAsync_ptsz`: mapInfoList: may be an array counted by count
+- `cuMemPoolCreate`: poolProps: CUmemPoolProps_st holds host pointers
+- `cuMemPoolExportToShareableHandle`: handle_out: host memory
+- `cuMemPoolGetAttribute`: value: host memory
+- `cuMemPoolImportFromShareableHandle`: handle: host memory
+- `cuMemPoolSetAccess`: map: may be an array counted by count
+- `cuMemPoolSetAttribute`: value: host memory
+- `cuMemPrefetchBatchAsync`: dptrs: may be an array counted by count
+- `cuMemPrefetchBatchAsync_ptsz`: dptrs: may be an array counted by count
+- `cuMemRangeGetAttribute`: data: host memory
+- `cuMemRangeGetAttributes`: data: pointer to pointer
+- `cuMemRetainAllocationHandle`: addr: host memory
+- `cuMemcpy2D`: pCopy: CUDA_MEMCPY2D_v1_st holds host pointers
+- `cuMemcpy2DAsync`: pCopy: CUDA_MEMCPY2D_v1_st holds host pointers
+- `cuMemcpy2DAsync_v2`: pCopy: CUDA_MEMCPY2D_st holds host pointers
+- `cuMemcpy2DAsync_v2_ptsz`: pCopy: CUDA_MEMCPY2D_st holds host pointers
+- `cuMemcpy2DUnaligned`: pCopy: CUDA_MEMCPY2D_v1_st holds host pointers
+- `cuMemcpy2DUnaligned_v2`: pCopy: CUDA_MEMCPY2D_st holds host pointers
+- `cuMemcpy2DUnaligned_v2_ptds`: pCopy: CUDA_MEMCPY2D_st holds host pointers
+- `cuMemcpy2D_v2`: pCopy: CUDA_MEMCPY2D_st holds host pointers
+- `cuMemcpy2D_v2_ptds`: pCopy: CUDA_MEMCPY2D_st holds host pointers
+- `cuMemcpy3D`: pCopy: CUDA_MEMCPY3D_v1_st holds host pointers
+- `cuMemcpy3DAsync`: pCopy: CUDA_MEMCPY3D_v1_st holds host pointers
+- `cuMemcpy3DAsync_v2`: pCopy: CUDA_MEMCPY3D_st holds host pointers
+- `cuMemcpy3DAsync_v2_ptsz`: pCopy: CUDA_MEMCPY3D_st holds host pointers
+- `cuMemcpy3DBatchAsync`: opList: may be an array counted by numOps
+- `cuMemcpy3DBatchAsync_ptsz`: opList: may be an array counted by numOps
+- `cuMemcpy3DBatchAsync_v2`: opList: may be an array counted by numOps
+- `cuMemcpy3DBatchAsync_v2_ptsz`: opList: may be an array counted by numOps
+- `cuMemcpy3DPeer`: pCopy: CUDA_MEMCPY3D_PEER_st holds host pointers
+- `cuMemcpy3DPeerAsync`: pCopy: CUDA_MEMCPY3D_PEER_st holds host pointers
+- `cuMemcpy3DPeerAsync_ptsz`: pCopy: CUDA_MEMCPY3D_PEER_st holds host pointers
+- `cuMemcpy3DPeer_ptds`: pCopy: CUDA_MEMCPY3D_PEER_st holds host pointers
+- `cuMemcpy3D_v2`: pCopy: CUDA_MEMCPY3D_st holds host pointers
+- `cuMemcpy3D_v2_ptds`: pCopy: CUDA_MEMCPY3D_st holds host pointers
+- `cuMemcpyAtoH`: dstHost: host memory
+- `cuMemcpyAtoHAsync`: dstHost: host memory
+- `cuMemcpyAtoHAsync_v2`: dstHost: host memory
+- `cuMemcpyAtoHAsync_v2_ptsz`: dstHost: host memory
+- `cuMemcpyAtoH_v2`: dstHost: host memory
+- `cuMemcpyAtoH_v2_ptds`: dstHost: host memory
+- `cuMemcpyBatchAsync`: dsts: may be an array counted by count
+- `cuMemcpyBatchAsync_ptsz`: dsts: may be an array counted by count
+- `cuMemcpyBatchAsync_v2`: dsts: may be an array counted by count
+- `cuMemcpyBatchAsync_v2_ptsz`: dsts: may be an array counted by count
+- `cuMemcpyDtoH`: dstHost: host memory
+- `cuMemcpyDtoHAsync`: dstHost: host memory
+- `cuMemcpyHtoA`: srcHost: host memory
+- `cuMemcpyHtoAAsync`: srcHost: host memory
+- `cuMemcpyHtoAAsync_v2`: srcHost: host memory
+- `cuMemcpyHtoAAsync_v2_ptsz`: srcHost: host memory
+- `cuMemcpyHtoA_v2`: srcHost: host memory
+- `cuMemcpyHtoA_v2_ptds`: srcHost: host memory
+- `cuMemcpyHtoD`: srcHost: host memory
+- `cuMemcpyHtoDAsync`: srcHost: host memory
+- `cuMipmappedArrayCreate`: pHandle: may be an array counted by numMipmapLevels
+- `cuModuleEnumerateFunctions`: functions: may be an array counted by numFunctions
+- `cuModuleLoadFatBinary`: fatCubin: host memory
+- `cuOccupancyAvailableDynamicSMemPerBlock`: dynamicSmemSize: may be an array counted by numBlocks
+- `cuOccupancyMaxActiveClusters`: config: CUlaunchConfig_st holds host pointers
+- `cuOccupancyMaxPotentialBlockSize`: blockSizeToDynamicSMemSize: callback
+- `cuOccupancyMaxPotentialBlockSizeWithFlags`: blockSizeToDynamicSMemSize: callback
+- `cuOccupancyMaxPotentialClusterSize`: config: CUlaunchConfig_st holds host pointers
+- `cuParamSetv`: ptr: host memory
+- `cuPointerGetAttribute`: data: host memory
+- `cuPointerGetAttributes`: data: pointer to pointer
+- `cuPointerSetAttribute`: value: host memory
+- `cuSignalExternalSemaphoresAsync`: extSemArray: input array
+- `cuSignalExternalSemaphoresAsync_ptsz`: extSemArray: input array
+- `cuStreamAddCallback`: callback: callback
+- `cuStreamAddCallback_ptsz`: callback: callback
+- `cuStreamBatchMemOp`: paramArray: may be an array counted by count
+- `cuStreamBatchMemOp_ptsz`: paramArray: may be an array counted by count
+- `cuStreamBatchMemOp_v2`: paramArray: may be an array counted by count
+- `cuStreamBatchMemOp_v2_ptsz`: paramArray: may be an array counted by count
+- `cuStreamBeginCaptureToCig`: streamCigCaptureParams: CUstreamCigCaptureParams_st holds host pointers
+- `cuStreamBeginCaptureToCig_ptsz`: streamCigCaptureParams: CUstreamCigCaptureParams_st holds host pointers
+- `cuStreamBeginCaptureToGraph`: dependencies: input array
+- `cuStreamBeginCaptureToGraph_ptsz`: dependencies: input array
+- `cuStreamBeginRecaptureToGraph`: callbackFunc: callback
+- `cuStreamBeginRecaptureToGraph_ptsz`: callbackFunc: callback
+- `cuStreamGetAttribute`: value: CUlaunchAttributeValue_union holds host pointers
+- `cuStreamGetAttribute_ptsz`: value_out: CUlaunchAttributeValue_union holds host pointers
+- `cuStreamGetCaptureInfo_v2`: dependencies_out: pointer to pointer
+- `cuStreamGetCaptureInfo_v2_ptsz`: dependencies_out: pointer to pointer
+- `cuStreamGetCaptureInfo_v3`: dependencies_out: pointer to pointer
+- `cuStreamGetCaptureInfo_v3_ptsz`: dependencies_out: pointer to pointer
+- `cuStreamGetDevResource`: resource: CUdevResource_st holds host pointers
+- `cuStreamGetDevResource_ptsz`: resource: CUdevResource_st holds host pointers
+- `cuStreamSetAttribute`: param: CUlaunchAttributeValue_union holds host pointers
+- `cuStreamSetAttribute_ptsz`: value: CUlaunchAttributeValue_union holds host pointers
+- `cuStreamUpdateCaptureDependencies`: dependencies: may be an array counted by numDependencies
+- `cuStreamUpdateCaptureDependencies_ptsz`: dependencies: may be an array counted by numDependencies
+- `cuStreamUpdateCaptureDependencies_v2`: dependencies: may be an array counted by numDependencies
+- `cuStreamUpdateCaptureDependencies_v2_ptsz`: dependencies: may be an array counted by numDependencies
+- `cuTensorMapEncodeIm2col`: globalAddress: host memory
+- `cuTensorMapEncodeIm2colWide`: globalAddress: host memory
+- `cuTensorMapEncodeTiled`: globalAddress: host memory
+- `cuTensorMapReplaceAddress`: globalAddress: host memory
+- `cuUserObjectCreate`: ptr: host memory
+- `cuWaitExternalSemaphoresAsync`: extSemArray: input array
+- `cuWaitExternalSemaphoresAsync_ptsz`: extSemArray: input array
+
+## Not in cuda.h
+
+- `cuD3D10CtxCreate`
+- `cuD3D10CtxCreateOnDevice`
+- `cuD3D10CtxCreate_v2`
+- `cuD3D10GetDevice`
+- `cuD3D10GetDevices`
+- `cuD3D10GetDirect3DDevice`
+- `cuD3D10MapResources`
+- `cuD3D10RegisterResource`
+- `cuD3D10ResourceGetMappedArray`
+- `cuD3D10ResourceGetMappedPitch`
+- `cuD3D10ResourceGetMappedPitch_v2`
+- `cuD3D10ResourceGetMappedPointer`
+- `cuD3D10ResourceGetMappedPointer_v2`
+- `cuD3D10ResourceGetMappedSize`
+- `cuD3D10ResourceGetMappedSize_v2`
+- `cuD3D10ResourceGetSurfaceDimensions`
+- `cuD3D10ResourceGetSurfaceDimensions_v2`
+- `cuD3D10ResourceSetMapFlags`
+- `cuD3D10UnmapResources`
+- `cuD3D10UnregisterResource`
+- `cuD3D11CtxCreate`
+- `cuD3D11CtxCreateOnDevice`
+- `cuD3D11CtxCreate_v2`
+- `cuD3D11GetDevice`
+- `cuD3D11GetDevices`
+- `cuD3D11GetDirect3DDevice`
+- `cuD3D9Begin`
+- `cuD3D9CtxCreate`
+- `cuD3D9CtxCreateOnDevice`
+- `cuD3D9CtxCreate_v2`
+- `cuD3D9End`
+- `cuD3D9GetDevice`
+- `cuD3D9GetDevices`
+- `cuD3D9GetDirect3DDevice`
+- `cuD3D9MapResources`
+- `cuD3D9MapVertexBuffer`
+- `cuD3D9MapVertexBuffer_v2`
+- `cuD3D9RegisterResource`
+- `cuD3D9RegisterVertexBuffer`
+- `cuD3D9ResourceGetMappedArray`
+- `cuD3D9ResourceGetMappedPitch`
+- `cuD3D9ResourceGetMappedPitch_v2`
+- `cuD3D9ResourceGetMappedPointer`
+- `cuD3D9ResourceGetMappedPointer_v2`
+- `cuD3D9ResourceGetMappedSize`
+- `cuD3D9ResourceGetMappedSize_v2`
+- `cuD3D9ResourceGetSurfaceDimensions`
+- `cuD3D9ResourceGetSurfaceDimensions_v2`
+- `cuD3D9ResourceSetMapFlags`
+- `cuD3D9UnmapResources`
+- `cuD3D9UnmapVertexBuffer`
+- `cuD3D9UnregisterResource`
+- `cuD3D9UnregisterVertexBuffer`
+- `cuDriverGetGpuCodeIsaVersion`
+- `cuFabricCpyBatchAsync`
+- `cuFabricCpyBatchAsync_ptsz`
+- `cuGLCtxCreate`
+- `cuGLCtxCreate_v2`
+- `cuGLGetDevices`
+- `cuGLGetDevices_v2`
+- `cuGLInit`
+- `cuGLMapBufferObject`
+- `cuGLMapBufferObjectAsync`
+- `cuGLMapBufferObjectAsync_v2`
+- `cuGLMapBufferObjectAsync_v2_ptsz`
+- `cuGLMapBufferObject_v2`
+- `cuGLMapBufferObject_v2_ptds`
+- `cuGLRegisterBufferObject`
+- `cuGLSetBufferObjectMapFlags`
+- `cuGLUnmapBufferObject`
+- `cuGLUnmapBufferObjectAsync`
+- `cuGLUnregisterBufferObject`
+- `cuGraphicsD3D10RegisterResource`
+- `cuGraphicsD3D11RegisterResource`
+- `cuGraphicsD3D9RegisterResource`
+- `cuGraphicsGLRegisterBuffer`
+- `cuGraphicsGLRegisterImage`
+- `cuNvtxGetInjectionInitializer`
+- `cuProfilerInitialize`
+- `cuProfilerStart`
+- `cuProfilerStop`
+- `cuSubgridCreate`
+- `cuSubgridWorkerGridCreate`
+- `cuSubgridWorksetCreate`
+- `cuTensorMapSetAllocationClass`
+- `cuWGLGetDevice`
+- `cudbgApiAttach`
+- `cudbgApiDetach`
+- `cudbgApiInit`
+- `cudbgGetAPI`
+- `cudbgGetAPIVersion`
+- `cudbgMain`

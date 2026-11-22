@@ -1,0 +1,16 @@
+[package]
+name = "nectar-netsim"
+description = "A simulated Wi-Fi link between a borrower and a lender on one computer, for testing without radios"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "nectar-netsim"
+path = "src/main.rs"
+
+[dependencies]
+nectar-lending.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.60", features = ["Win32_Media"] }

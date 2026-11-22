@@ -1,0 +1,22 @@
+[package]
+name = "nectar-server"
+description = "Runs borrowers' CUDA and Vulkan calls on the lender's GPU"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+libloading.workspace = true
+nectar-cuda-protocol.workspace = true
+nectar-cuda-sys.workspace = true
+nectar-lending.workspace = true
+nectar-detect.workspace = true
+nectar-vk-sys.workspace = true
+nectar-vk-wire.workspace = true
+xxhash-rust = { version = "0.8", features = ["xxh3"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.60", features = ["Win32_Networking_WinSock"] }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"

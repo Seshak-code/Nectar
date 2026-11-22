@@ -1,0 +1,19 @@
+[package]
+name = "nectar-cuda-trace"
+description = "Pass-through nvcuda.dll that records every CUDA driver call an application makes"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "nvcudatrace"
+crate-type = ["cdylib"]
+
+[dependencies]
+libloading.workspace = true
+nectar-cuda-protocol.workspace = true
+nectar-cuda-sys.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+nectar-cuda-redirect.workspace = true
+windows-sys = { version = "0.60", features = ["Win32_System_Memory", "Win32_System_Threading"] }

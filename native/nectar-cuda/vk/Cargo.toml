@@ -1,0 +1,26 @@
+[package]
+name = "nectar-vk"
+description = "Nectar's Vulkan driver for a borrowed GPU: a loader driver (ICD) that carries out each call on the lender"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "nectar_vk"
+crate-type = ["cdylib"]
+
+[dependencies]
+nectar-cuda-protocol.workspace = true
+nectar-lending.workspace = true
+nectar-vk-sys.workspace = true
+nectar-vk-wire.workspace = true
+xxhash-rust = { version = "0.8", features = ["xxh3"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+libloading.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.60", features = ["Win32_Foundation", "Win32_Graphics_Gdi", "Win32_System_LibraryLoader", "Win32_System_Memory", "Win32_System_Diagnostics_Debug", "Win32_System_Kernel", "Win32_UI_WindowsAndMessaging"] }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"

@@ -1,5 +1,12 @@
-**/log 
-**/dist
-**/node_modules
-**/juicecache
+**/log
 profile.coverage
+build/
+.vs/
+target/
+# Juice's programs and their cache and log, kept locally for comparison
+runtime/
+**/juicecache
+juice.log
+NectarVlk.json
+# Logs programs write beside themselves, such as DXVK's
+*.log
